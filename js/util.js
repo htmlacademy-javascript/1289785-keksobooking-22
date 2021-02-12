@@ -1,5 +1,3 @@
-export {getRandomInt, getRandomСoordinate};
-
 const getRandomInt = (min, max) => {
   if (min > max) {
     let temporalMax = max;
@@ -19,3 +17,5 @@ const getRandomСoordinate = (min, max, decimalPlaces) => {
 
   return Number((Math.random() * (max - min + 1) + min).toFixed(decimalPlaces));
 };
+
+export {getRandomInt, getRandomСoordinate};
