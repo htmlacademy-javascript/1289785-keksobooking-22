@@ -1,4 +1,4 @@
-import {getRandomInt, getRandomСoordinate} from './util.js';
+import {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement} from './util.js';
 
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const TIME = ['12:00', '13:00', '14:00'];
@@ -23,17 +23,7 @@ const SIMILAR_ADS_COUNT = 10;
 const getAvatar = () => {
   return 'img/avatars/user0' + getRandomInt(1,8) + '.png';
 };
-// Функция для возврата элемента массива
-const getArrElement = (array) => {
-  return array[getRandomInt(MIN, array.length-1)];
-};
 
-// Функция для возврата массива случайной длинны
-const getRandomArr = (array) => {
-  const newArr = Array.from(array);
-  newArr.length = getRandomInt(MIN_ARR_LENGTH, array.length);
-  return newArr;
-};
 
 const createAd = () => {
   return {
@@ -41,17 +31,17 @@ const createAd = () => {
       avatar: getAvatar(),
     },
     offer: {
-      title: getArrElement(TITLE),
+      title: getArrElement(TITLE, MIN),
       address: getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X) + ' , ' +  getRandomСoordinate(MIN_Y, MAX_Y, DECIMAL_PLACE_Y),
-      price: getArrElement(PRICE),
-      type: getArrElement(TYPE),
+      price: getArrElement(PRICE, MIN),
+      type: getArrElement(TYPE, MIN),
       rooms: getRandomInt(MIN, MAX_ROOMS),
       guests: getRandomInt(MIN, MAX_GUESTS),
-      checkin: getArrElement(TIME),
-      checkout: getArrElement(TIME),
-      features: getRandomArr(FEATURES),
-      description: getArrElement(DESCRIPTION),
-      photos: getRandomArr(PHOTOS),
+      checkin: getArrElement(TIME, MIN),
+      checkout: getArrElement(TIME, MIN),
+      features: getRandomArr(FEATURES, MIN_ARR_LENGTH),
+      description: getArrElement(DESCRIPTION, MIN),
+      photos: getRandomArr(PHOTOS, MIN),
     },
     location: {
       x: getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X),
@@ -60,6 +50,4 @@ const createAd = () => {
   };
 };
 
-const similarAds = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createAd());
-
-similarAds;
+export {createAd, SIMILAR_ADS_COUNT};

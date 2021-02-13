@@ -18,4 +18,16 @@ const getRandomСoordinate = (min, max, decimalPlaces) => {
   return Number((Math.random() * (max - min + 1) + min).toFixed(decimalPlaces));
 };
 
-export {getRandomInt, getRandomСoordinate};
+// Функция для возврата массива случайной длинны
+const getRandomArr = (array, minArrLength) => {
+  const newArr = Array.from(array);
+  newArr.length = getRandomInt(minArrLength, array.length);
+  return newArr;
+};
+
+// Функция для возврата элемента массива
+const getArrElement = (array, min) => {
+  return array[getRandomInt(min, array.length-1)];
+};
+
+export {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement};
