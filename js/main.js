@@ -1,5 +1,3 @@
-import {createAd, SIMILAR_ADS_COUNT} from './gen-arr.js';
+import {similarAdds, createAddFragment} from './gen-similar-add';
 
-const similarAds = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createAd());
-
-similarAds;
+document.querySelector('#map-canvas').appendChild(createAddFragment(similarAdds));
