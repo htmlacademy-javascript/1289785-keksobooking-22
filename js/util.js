@@ -30,4 +30,13 @@ const getArrElement = (array, min) => {
   return array[getRandomInt(min, array.length-1)];
 };
 
-export {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement};
+// Функция для отчиски коллекции
+const clearHTMLCollection = (element) => {
+  const collection = element.children;
+  for (let i = collection.length-1; i >= 0; i--) {
+    const child = collection[i];
+    child.parentElement.removeChild(child);
+  }
+};
+
+export {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement, clearHTMLCollection};
