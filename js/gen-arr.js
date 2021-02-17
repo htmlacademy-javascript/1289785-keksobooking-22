@@ -4,8 +4,10 @@ const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 const TIME = ['12:00', '13:00', '14:00'];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 const TITLE = ['Вилла в Греции на берегу моря, для большой семьи', 'Уютный домик в самом сердце Амстердама', 'Уютные аппартаменты для путешествующих с котом', 'Стильные аппартаменты в центре Милана'];
-const MIN_ARR_LENGTH = 1;
-const MIN = 0;
+const TRIGGER_VALUE_FIRST = 1;
+const TRIGGER_VALUE_SECOND = 4;
+const MIN_ONE = 1;
+const MIN_ARR_ELEMENT = 0;
 const PRICE = [2000, 3000, 5900, 12000, 6900, 1000];
 const TYPE = ['palace', 'flat', 'house', 'bungalow'];
 const MAX_ROOMS = 8;
@@ -18,6 +20,39 @@ const MAX_Y = 139.80000;
 const DECIMAL_PLACE_X = 2;
 const DECIMAL_PLACE_Y = 3;
 const SIMILAR_ADS_COUNT = 10;
+const MAP_FLAT_TYPE = {flat: 'Квартира', bungalow: 'Бунгало', house: 'Дом', palace: 'Дворец'};
+
+// Функция для заполнения src фото
+const printPhoto = (PHOTOS, arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    return arr[i].src = PHOTOS[i];
+  }
+};
+
+// Функция для строки заезд + выезд
+const printCheckinCheckout = (checkin, checkout) => {
+  return `Заезд после ${checkin}, выезд до ${checkout}`;
+};
+
+// Функция для выведения строки гости + комнаты
+const printRoomsGuests = (rooms, guests) => {
+  let printRooms = 'комната для';
+  let printGuests = 'гостя';
+  if (rooms > TRIGGER_VALUE_FIRST && rooms <= TRIGGER_VALUE_SECOND) {
+    printRooms = 'комнаты для';
+  }
+  if (rooms > TRIGGER_VALUE_SECOND) {
+    printRooms = 'комнат для';
+  }
+  if (guests > TRIGGER_VALUE_FIRST) {
+    printGuests = 'гостей';
+  }
+  return `${rooms} ${printRooms} ${guests} ${printGuests}`;
+};
+
+const getAppartType = (type) => {
+  return MAP_FLAT_TYPE[type];
+};
 
 //Функция для avatara
 const getAvatar = () => {
@@ -31,17 +66,17 @@ const createAd = () => {
       avatar: getAvatar(),
     },
     offer: {
-      title: getArrElement(TITLE, MIN),
+      title: getArrElement(TITLE, MIN_ARR_ELEMENT),
       address: getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X) + ' , ' +  getRandomСoordinate(MIN_Y, MAX_Y, DECIMAL_PLACE_Y),
-      price: getArrElement(PRICE, MIN),
-      type: getArrElement(TYPE, MIN),
-      rooms: getRandomInt(MIN, MAX_ROOMS),
-      guests: getRandomInt(MIN, MAX_GUESTS),
-      checkin: getArrElement(TIME, MIN),
-      checkout: getArrElement(TIME, MIN),
-      features: getRandomArr(FEATURES, MIN_ARR_LENGTH),
-      description: getArrElement(DESCRIPTION, MIN),
-      photos: getRandomArr(PHOTOS, MIN),
+      price: getArrElement(PRICE, MIN_ARR_ELEMENT),
+      type: getArrElement(TYPE, MIN_ARR_ELEMENT),
+      rooms: getRandomInt(MIN_ONE, MAX_ROOMS),
+      guests: getRandomInt(MIN_ONE, MAX_GUESTS),
+      checkin: getArrElement(TIME, MIN_ARR_ELEMENT),
+      checkout: getArrElement(TIME, MIN_ARR_ELEMENT),
+      features: getRandomArr(FEATURES, MIN_ONE),
+      description: getArrElement(DESCRIPTION, MIN_ARR_ELEMENT),
+      photos: getRandomArr(PHOTOS, MIN_ARR_ELEMENT),
     },
     location: {
       x: getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X),
@@ -50,4 +85,6 @@ const createAd = () => {
   };
 };
 
-export {createAd, SIMILAR_ADS_COUNT};
+const createAdds = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createAd());
+
+export {createAdds, MAP_FLAT_TYPE, getAppartType, printRoomsGuests, printCheckinCheckout, printPhoto};
