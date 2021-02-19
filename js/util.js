@@ -8,6 +8,7 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+
 const getRandomСoordinate = (min, max, decimalPlaces) => {
   if (min > max) {
     let temporalMax = max;
@@ -30,13 +31,4 @@ const getArrElement = (array, min) => {
   return array[getRandomInt(min, array.length-1)];
 };
 
-// Функция для отчиски коллекции
-const clearHTMLCollection = (element) => {
-  const collection = element.children;
-  for (let i = collection.length-1; i >= 0; i--) {
-    const child = collection[i];
-    child.parentElement.removeChild(child);
-  }
-};
-
-export {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement, clearHTMLCollection};
+export {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement};

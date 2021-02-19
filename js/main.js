@@ -1,3 +1,7 @@
-import {similarAdds, createAddFragment} from './gen-similar-add';
+import {adObject, SIMILAR_ADS_COUNT} from './gen-object.js';
+import {createTemplateElement, mapCanvas} from './gen-object-element.js'
 
-document.querySelector('#map-canvas').appendChild(createAddFragment(similarAdds));
+// Создаем и заполняем массив объектов
+const createAdsArr = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createTemplateElement(adObject));
+
+mapCanvas.appendChild(createAdsArr[0]);
