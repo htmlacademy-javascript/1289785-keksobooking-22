@@ -7,15 +7,22 @@ const getMapType = (map, key) => {
   return map[key];
 };
 
+
 // Функция для строки заезд + выезд
 const printCheckinCheckout = (checkin, checkout) => {
-  return `Заезд после ${checkin}, выезд до ${checkout}`;
+  let result = `Заезд после ${checkin}, выезд до ${checkout}`
+  if (checkin === undefined || checkout === undefined) {
+    return result = undefined;
+  }
+  return result;
 };
 
 // Функция для выведения строки гости + комнаты
 const printRoomsGuests = (rooms, guests) => {
   let printRooms = 'комната для';
   let printGuests = 'гостя';
+  let result = `${rooms} ${printRooms} ${guests} ${printGuests}`
+
   if (rooms > TRIGGER_VALUE_FIRST && rooms <= TRIGGER_VALUE_SECOND) {
     printRooms = 'комнаты для';
   }
@@ -25,7 +32,10 @@ const printRoomsGuests = (rooms, guests) => {
   if (guests > TRIGGER_VALUE_FIRST) {
     printGuests = 'гостей';
   }
-  return `${rooms} ${printRooms} ${guests} ${printGuests}`;
+  if (rooms === undefined || guests === undefined) {
+    return result = undefined;
+  }
+  return result;
 };
 
 const createMap = (object) => {

@@ -1,9 +1,12 @@
 import {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement} from './util.js';
 
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const TIME = ['12:00', '13:00', '14:00'];
+// const FEATURES = [];
+// const PHOTOS = [];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+const TIME = ['12:00', '13:00', '14:00'];
 const TITLE = ['Вилла в Греции на берегу моря, для большой семьи', 'Уютный домик в самом сердце Амстердама', 'Уютные аппартаменты для путешествующих с котом', 'Стильные аппартаменты в центре Милана'];
+// const TITLE = []
 const MIN_USER_AVATAR = 1;
 const MAX_USER_AVATAR = 8;
 const MIN_INT_VALUE = 1;
@@ -32,6 +35,7 @@ const createAd = () => {
   return {
     author: {
       avatar: getAvatar(MIN_USER_AVATAR, MAX_USER_AVATAR),
+      // avatar: undefined,
     },
     offer: {
       title: getArrElement(TITLE, MIN_ARR_ELEMENT),
@@ -39,8 +43,10 @@ const createAd = () => {
       price: getArrElement(PRICE, MIN_ARR_ELEMENT),
       type: getArrElement(TYPE, MIN_ARR_ELEMENT),
       rooms: getRandomInt(MIN_INT_VALUE, MAX_ROOMS),
+      // rooms: undefined,
       guests: getRandomInt(MIN_INT_VALUE, MAX_GUESTS),
       checkin: getArrElement(TIME, MIN_ARR_ELEMENT),
+      // checkin: undefined,
       checkout: getArrElement(TIME, MIN_ARR_ELEMENT),
       features: getRandomArr(FEATURES, MIN_ARR_LENGTH),
       description: getArrElement(DESCRIPTION, MIN_ARR_ELEMENT),
