@@ -3,16 +3,12 @@ import {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement} from '.
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const TIME = ['12:00', '13:00', '14:00'];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-// const TITLE = []
 const TITLE = ['Вилла в Греции на берегу моря, для большой семьи', 'Уютный домик в самом сердце Амстердама', 'Уютные аппартаменты для путешествующих с котом', 'Стильные аппартаменты в центре Милана'];
 const MIN_USER_AVATAR = 1;
 const MAX_USER_AVATAR = 8;
 const MIN_INT_VALUE = 1;
-const TRIGGER_VALUE_FIRST = 1;
-const TRIGGER_VALUE_SECOND = 4;
 const MIN_ARR_LENGTH = 1;
 const MIN_ARR_ELEMENT = 0;
-// const PRICE = []
 const PRICE = [2000, 3000, 5900, 12000, 6900, 1000];
 const TYPE = ['palace', 'flat', 'house', 'bungalow'];
 const MAX_ROOMS = 8;
@@ -25,29 +21,6 @@ const MAX_Y = 139.80000;
 const DECIMAL_PLACE_X = 2;
 const DECIMAL_PLACE_Y = 3;
 const SIMILAR_ADS_COUNT = 10;
-
-// Функция для заполнения src фото
-const printPhoto = (PHOTOS, arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    return arr[i].src = PHOTOS[i];
-  }
-};
-
-// Функция для выведения строки гости + комнаты
-const printRoomsGuests = (rooms, guests) => {
-  let printRooms = 'комната для';
-  let printGuests = 'гостя';
-  if (rooms > TRIGGER_VALUE_FIRST && rooms <= TRIGGER_VALUE_SECOND) {
-    printRooms = 'комнаты для';
-  }
-  if (rooms > TRIGGER_VALUE_SECOND) {
-    printRooms = 'комнат для';
-  }
-  if (guests > TRIGGER_VALUE_FIRST) {
-    printGuests = 'гостей';
-  }
-  return `${rooms} ${printRooms} ${guests} ${printGuests}`;
-};
 
 //Функция для avatara
 const getAvatar = (min, max) => {
@@ -80,4 +53,4 @@ const createAd = () => {
   };
 };
 
-export {createAd, printRoomsGuests, printPhoto, SIMILAR_ADS_COUNT};
+export {createAd, SIMILAR_ADS_COUNT};
