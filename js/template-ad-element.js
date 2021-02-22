@@ -1,4 +1,4 @@
-import {getAppartType, printRoomsGuests, printCheckinCheckout, adObject} from './ad-object.js';
+import {printRoomsGuests} from './ad-object.js';
 
 const IMG_HEIGHT = 40;
 const IMG_WIDTH = 45;
@@ -7,6 +7,17 @@ const MAP_FLAT_TYPE = {flat: 'Квартира', bungalow: 'Бунгало', hou
 const mapCanvas = document.querySelector('#map-canvas');
 const similarAddTemplate = document.querySelector('#card').content.querySelector('.popup');
 const addsFragment = document.createDocumentFragment();
+// const adObject = createAd();
+
+// Функция для определения типа аппартаментов
+const getAppartType = (type, arrElement) => {
+  return arrElement[type];
+};
+
+// Функция для строки заезд + выезд
+const printCheckinCheckout = (checkin, checkout) => {
+  return `Заезд после ${checkin}, выезд до ${checkout}`;
+};
 
 // Функция для отчиски коллекции
 const clearHTMLCollection = (element) => {
@@ -44,20 +55,6 @@ const createPhotos = (docElement, arr) => {
   return docElement;
 };
 
-
-const {offer: {title, address, price, type, rooms, guests, checkin, checkout, features, description, photos}, author: {avatar}} = adObject;
-
-const MAP_CLASS_TYPE = {
-  '.popup__title': title,
-  '.popup__text--address': address,
-  '.popup__text--price': `${price} ₽/ночь`,
-  '.popup__type': getAppartType(type, MAP_FLAT_TYPE),
-  '.popup__text--capacity': printRoomsGuests(rooms, guests),
-  '.popup__text--time': printCheckinCheckout(checkin, checkout),
-  '.popup__description': description,
-  '.popup__avatar': avatar,
-};
-
 // Функция для заполнения эдемента с дочерними элементами
 const fillComplexElement = (environment, objectKey, classElement, fn) => {
   const popupElement = environment.querySelector(classElement);
@@ -67,24 +64,36 @@ const fillComplexElement = (environment, objectKey, classElement, fn) => {
   return fn(popupElement, objectKey);
 };
 
-const fillDoubleElement = (firstObjectKey, secondObjectKey, templateElement, elementClass) => {
-  templateElement.querySelector(elementClass).textContent = MAP_CLASS_TYPE[elementClass];
-  if (firstObjectKey === undefined || secondObjectKey === undefined) {
+const fillDoubleElement = (firstKeyValue, secondKeyValue, templateElement, elementClass) => {
+  if (elementClass === '.popup__text--time') {
+    templateElement.querySelector(elementClass).textContent = printCheckinCheckout(firstKeyValue, secondKeyValue);
+  }
+  if (elementClass === '.popup__text--capacity') {
+    templateElement.querySelector(elementClass).textContent = printRoomsGuests(firstKeyValue, secondKeyValue);
+  }
+  if (firstKeyValue === undefined || secondKeyValue === undefined) {
     templateElement.querySelector(elementClass).hidden = true;
   }
 };
 
-const fillElement = (objectKey, templateElement, elementClass) => {
-  templateElement.querySelector(elementClass).textContent = MAP_CLASS_TYPE[elementClass];
-  if (objectKey === avatar) {
-    templateElement.querySelector(elementClass).src = MAP_CLASS_TYPE[elementClass];
+const fillElement = (keyValue, templateElement, elementClass) => {
+  templateElement.querySelector(elementClass).textContent = keyValue;
+  if (elementClass === '.popup__type') {
+    templateElement.querySelector(elementClass).textContent = getAppartType(keyValue, MAP_FLAT_TYPE);
   }
-  if (objectKey === undefined) {
+  if (elementClass === '.popup__text--price') {
+    templateElement.querySelector(elementClass).textContent = `${keyValue} ₽/ночь`;
+  }
+  if (elementClass === '.popup__avatar') {
+    templateElement.querySelector(elementClass).src = keyValue;
+  }
+  if (keyValue === undefined) {
     templateElement.querySelector(elementClass).hidden = true;
   }
 };
 
-const createTemplateElement = () => {
+const createTemplateElement = (object) => {
+  const {offer: {title, address, price, type, rooms, guests, checkin, checkout, features, description, photos}, author: {avatar}} = object;
   const newAdElement = similarAddTemplate.cloneNode(true);
   fillElement(title, newAdElement, '.popup__title');
   fillElement(address, newAdElement, '.popup__text--address');
