@@ -1,11 +1,17 @@
 import {getRandomInt, getRandomСoordinate, getRandomArr, getArrElement} from './util.js';
 
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const TIME = ['12:00', '13:00', '14:00'];
+// const FEATURES = [];
+// const PHOTOS = [];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+const TIME = ['12:00', '13:00', '14:00'];
 const TITLE = ['Вилла в Греции на берегу моря, для большой семьи', 'Уютный домик в самом сердце Амстердама', 'Уютные аппартаменты для путешествующих с котом', 'Стильные аппартаменты в центре Милана'];
+// const TITLE = []
+const MIN_USER_AVATAR = 1;
+const MAX_USER_AVATAR = 8;
+const MIN_INT_VALUE = 1;
 const MIN_ARR_LENGTH = 1;
-const MIN = 0;
+const MIN_ARR_ELEMENT = 0;
 const PRICE = [2000, 3000, 5900, 12000, 6900, 1000];
 const TYPE = ['palace', 'flat', 'house', 'bungalow'];
 const MAX_ROOMS = 8;
@@ -20,28 +26,31 @@ const DECIMAL_PLACE_Y = 3;
 const SIMILAR_ADS_COUNT = 10;
 
 //Функция для avatara
-const getAvatar = () => {
-  return 'img/avatars/user0' + getRandomInt(1,8) + '.png';
+const getAvatar = (min, max) => {
+  return 'img/avatars/user0' + getRandomInt(min, max) + '.png';
 };
 
-
+// Создаем объект
 const createAd = () => {
   return {
     author: {
-      avatar: getAvatar(),
+      avatar: getAvatar(MIN_USER_AVATAR, MAX_USER_AVATAR),
+      // avatar: undefined,
     },
     offer: {
-      title: getArrElement(TITLE, MIN),
-      address: getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X) + ' , ' +  getRandomСoordinate(MIN_Y, MAX_Y, DECIMAL_PLACE_Y),
-      price: getArrElement(PRICE, MIN),
-      type: getArrElement(TYPE, MIN),
-      rooms: getRandomInt(MIN, MAX_ROOMS),
-      guests: getRandomInt(MIN, MAX_GUESTS),
-      checkin: getArrElement(TIME, MIN),
-      checkout: getArrElement(TIME, MIN),
+      title: getArrElement(TITLE, MIN_ARR_ELEMENT),
+      address: `${getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X)}, ${getRandomСoordinate(MIN_Y, MAX_Y, DECIMAL_PLACE_Y)}`,
+      price: getArrElement(PRICE, MIN_ARR_ELEMENT),
+      type: getArrElement(TYPE, MIN_ARR_ELEMENT),
+      rooms: getRandomInt(MIN_INT_VALUE, MAX_ROOMS),
+      // rooms: undefined,
+      guests: getRandomInt(MIN_INT_VALUE, MAX_GUESTS),
+      checkin: getArrElement(TIME, MIN_ARR_ELEMENT),
+      // checkin: undefined,
+      checkout: getArrElement(TIME, MIN_ARR_ELEMENT),
       features: getRandomArr(FEATURES, MIN_ARR_LENGTH),
-      description: getArrElement(DESCRIPTION, MIN),
-      photos: getRandomArr(PHOTOS, MIN),
+      description: getArrElement(DESCRIPTION, MIN_ARR_ELEMENT),
+      photos: getRandomArr(PHOTOS, MIN_ARR_LENGTH),
     },
     location: {
       x: getRandomСoordinate(MIN_X, MAX_X, DECIMAL_PLACE_X),

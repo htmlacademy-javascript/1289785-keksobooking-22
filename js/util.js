@@ -8,6 +8,7 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+
 const getRandomСoordinate = (min, max, decimalPlaces) => {
   if (min > max) {
     let temporalMax = max;

@@ -1,5 +1,9 @@
-import {createAd, SIMILAR_ADS_COUNT} from './gen-arr.js';
+import {SIMILAR_ADS_COUNT, createAd} from './ad-object.js';
+import {createTemplateElement, mapCanvas} from './template-ad-element.js'
 
-const similarAds = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createAd());
+const adObject = createAd();
 
-similarAds;
+// Создаем и заполняем массив объектов
+const createAdsArr = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createTemplateElement(adObject));
+
+mapCanvas.appendChild(createAdsArr[0]);
