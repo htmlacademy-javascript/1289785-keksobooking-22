@@ -59,4 +59,4 @@ const createAd = () => {
   };
 };
 
-export {createAd, SIMILAR_ADS_COUNT};
+export {createAd, SIMILAR_ADS_COUNT, MIN_X, MAX_Y, MAX_X, MIN_Y, DECIMAL_PLACE_X, DECIMAL_PLACE_Y};

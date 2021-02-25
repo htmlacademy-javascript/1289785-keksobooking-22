@@ -1,4 +1,4 @@
-import {getMapType, createMap} from './map.js';
+import {getMapType, createMap} from './map-class.js';
 
 const IMG_HEIGHT = 40;
 const IMG_WIDTH = 45;
@@ -83,4 +83,4 @@ const createTemplateElement = (object) => {
   return newAdElement;
 };
 
-export {createTemplateElement, mapCanvas};
+export {createTemplateElement};
