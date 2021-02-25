@@ -3,7 +3,6 @@ import {getMapType, createMap} from './map-class.js';
 const IMG_HEIGHT = 40;
 const IMG_WIDTH = 45;
 const IMG_ALT = 'Фотография жилья';
-const mapCanvas = document.querySelector('#map-canvas');
 const similarAddTemplate = document.querySelector('#card').content.querySelector('.popup');
 const addsFragment = document.createDocumentFragment();
 

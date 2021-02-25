@@ -1,5 +1,3 @@
-/* global L:readonly */
-
 // Функция для отмены режимов "неактивно";
 const removeDisabled = (arr) => {
   arr.forEach((arrElement) => {
@@ -23,6 +21,3 @@ const activeStage = (arr, readOnlyElement) => {
 };
 
 export {activeStage};
-
-// 35.68950 139.69171 Центр Токио;
-
