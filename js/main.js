@@ -1,5 +1,5 @@
 import {adDisabled, DISABLED_ELEMENTS} from './inactive-state.js';
-import  {loadMap} from './map.js';
+import  {activeState} from './active-state.js';
 
 adDisabled(DISABLED_ELEMENTS);
-loadMap();
+activeState();
