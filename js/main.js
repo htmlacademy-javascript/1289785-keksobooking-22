@@ -1,9 +1,5 @@
-import {SIMILAR_ADS_COUNT, createAd} from './ad-object.js';
-import {createTemplateElement, mapCanvas} from './template-ad-element.js'
+import {adDisabled, DISABLED_ELEMENTS} from './inactive-state.js';
+import  {renderMapInActiveState} from './active-state.js';
 
-const adObject = createAd();
-
-// Создаем и заполняем массив объектов
-const createAdsArr = new Array(SIMILAR_ADS_COUNT).fill(null).map(() => createTemplateElement(adObject));
-
-mapCanvas.appendChild(createAdsArr[0]);
+adDisabled(DISABLED_ELEMENTS);
+renderMapInActiveState();
