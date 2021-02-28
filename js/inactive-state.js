@@ -3,8 +3,8 @@ const mapFilter = document.querySelector('.map__filters');
 const DISABLED_ELEMENTS = [adForm, mapFilter];
 
 // Функция неактивного режима
-const adDisabled = (arr) => {
-  arr.forEach((arrElement) => {
+const adDisabled = (disabledElements) => {
+  disabledElements.forEach((arrElement) => {
     arrElement.classList.add('ad-form--disabled');
     const formElements = arrElement.querySelectorAll('fieldset, select')
     formElements.forEach((element) => {

@@ -7,5 +7,11 @@ const tileLayer = L.tileLayer(
   },
 );
 
+// Функция добавления объектов к карте
+const addToMap = (arrAdditions, map) => {
+  arrAdditions.forEach((element) => {
+    element.addTo(map);
+  });
+};
 
-export {tileLayer};
+export {tileLayer, addToMap};

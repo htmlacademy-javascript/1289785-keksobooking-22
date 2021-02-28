@@ -16,9 +16,9 @@ const clearHTMLCollection = (element) => {
 };
 
 // Функция для создания элементов в блоке Photos
-const createPhotos = (docElement, arr) => {
+const createPhotos = (docElement, photos) => {
   clearHTMLCollection(docElement);
-  arr.forEach((element) => {
+  photos.forEach((element) => {
     const newImgElement = document.createElement('img');
     newImgElement.classList.add('popup__photo');
     newImgElement.src = element;
@@ -31,9 +31,9 @@ const createPhotos = (docElement, arr) => {
 };
 
 // Функция для создания списка элементов в блоке Feature
-const createFeatures = (docElement, arr) => {
+const createFeatures = (docElement, features) => {
   clearHTMLCollection(docElement);
-  arr.forEach((element) => {
+  features.forEach((element) => {
     const newElement = document.createElement('li');
     newElement.classList.add('popup__feature');
     newElement.classList.add(`popup__feature--${element}`);
